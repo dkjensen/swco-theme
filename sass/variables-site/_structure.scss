@@ -1,0 +1,32 @@
+$size__container: 1200px;
+
+$size__grid-gutter: 30px !default;
+$size__grid-gutter-vertical: 20px !default;
+
+$size__grid-mq-list: (
+  lg: "screen and (max-width: 80em)",
+  md: "screen and (max-width: 64em)",
+  sm: "screen and (max-width: 48em)",
+  xs: "screen and (max-width: 35.5em)"
+) !default;
+
+
+$size__grid-col-1: (100%/12);
+$size__grid-col-2: ($size__grid-col-1*2);
+$size__grid-col-3: ($size__grid-col-1*3);
+$size__grid-col-4: ($size__grid-col-1*4);
+$size__grid-col-5: ($size__grid-col-1*5);
+$size__grid-col-6: ($size__grid-col-1*6);
+$size__grid-col-7: ($size__grid-col-1*7);
+$size__grid-col-8: ($size__grid-col-1*8);
+$size__grid-col-9: ($size__grid-col-1*9);
+$size__grid-col-10: ($size__grid-col-1*10);
+$size__grid-col-11: ($size__grid-col-1*11);
+$size__grid-col-12: 100%;
+
+$size__grid-col-5-12: (100%/5);
+$size__grid-col-7-12: (100%/7);
+$size__grid-col-8-12: (100%/8);
+$size__grid-col-9-12: (100%/9);
+$size__grid-col-10-12: (100%/10);
+$size__grid-col-11-12: (100%/11);

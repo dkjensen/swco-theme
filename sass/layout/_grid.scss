@@ -1,0 +1,308 @@
+.container {
+  width: $size__container;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+
+@mixin makeGridByNumber($grid)
+{
+  [#class*="#{$grid}-1"] > [#class~="#col"],
+  [#class*="#{$grid}-1"] > [#class*="#col-"] {
+    flex-basis: $size__grid-col-12;
+    max-width: $size__grid-col-12;
+  }
+
+  [#class*="#{$grid}-2"] > [#class~="#col"],
+  [#class*="#{$grid}-2"] > [#class*="#col-"] {
+    flex-basis: $size__grid-col-6;
+    max-width: $size__grid-col-6;
+  }
+
+  [#class*="#{$grid}-3"] > [#class~="#col"],
+  [#class*="#{$grid}-3"] > [#class*="#col-"] {
+    flex-basis: $size__grid-col-4;
+    max-width: $size__grid-col-4;
+  }
+
+  [#class*="#{$grid}-4"] > [#class~="#col"],
+  [#class*="#{$grid}-4"] > [#class*="#col-"] {
+    flex-basis: $size__grid-col-3;
+    max-width: $size__grid-col-3;
+  }
+  [#class*="#{$grid}-5"] > [#class~="#col"],
+  [#class*="#{$grid}-5"] > [#class*="#col-"] {
+    flex-basis: $size__grid-col-5-12;
+    max-width: $size__grid-col-5-12;
+  }
+  [#class*="#{$grid}-6"] > [#class~="#col"],
+  [#class*="#{$grid}-6"] > [#class*="#col-"] {
+    flex-basis: $size__grid-col-2;
+    max-width: $size__grid-col-2;
+  }
+  [#class*="#{$grid}-7"] > [#class~="#col"],
+  [#class*="#{$grid}-7"] > [#class*="#col-"] {
+    flex-basis: $size__grid-col-7-12;
+    max-width: $size__grid-col-7-12;
+  }
+  [#class*="#{$grid}-8"] > [#class~="#col"],
+  [#class*="#{$grid}-8"] > [#class*="#col-"] {
+    flex-basis: $size__grid-col-8-12;
+    max-width: $size__grid-col-8-12;
+  }
+  [#class*="#{$grid}-9"] > [#class~="#col"],
+  [#class*="#{$grid}-9"] > [#class*="#col-"], {
+    flex-basis: $size__grid-col-9-12;
+    max-width: $size__grid-col-9-12;
+  }
+  [#class*="#{$grid}-10"] > [#class~="#col"],
+  [#class*="#{$grid}-10"] > [#class*="#col-"] {
+    flex-basis: $size__grid-col-10-12;
+    max-width: $size__grid-col-10-12;
+  }
+  [#class*="#{$grid}-11"] > [#class~="#col"],
+  [#class*="#{$grid}-11"] > [#class*="#col-"] {
+    flex-basis: $size__grid-col-11-12;
+    max-width: $size__grid-col-11-12;
+  }
+  [#class*="#{$grid}-12"] > [#class~="#col"],
+  [#class*="#{$grid}-12"] > [#class*="#col-"] {
+    flex-basis: $size__grid-col-1;
+    max-width: $size__grid-col-1;
+  }
+}
+
+
+@mixin makeCol($col)
+{
+  [#class~="#grid"],
+  [#class*="#grid-"],
+  [#class*="#grid_"] {
+    > [#class*="#{$col}-1"]{ flex-basis: $size__grid-col-1; max-width: $size__grid-col-1; }
+    > [#class*="#{$col}-2"]{ flex-basis: $size__grid-col-2; max-width: $size__grid-col-2; }
+    > [#class*="#{$col}-3"]{ flex-basis: $size__grid-col-3; max-width: $size__grid-col-3; }
+    > [#class*="#{$col}-4"]{ flex-basis: $size__grid-col-4; max-width: $size__grid-col-4; }
+    > [#class*="#{$col}-5"]{ flex-basis: $size__grid-col-5; max-width: $size__grid-col-5; }
+    > [#class*="#{$col}-6"]{ flex-basis: $size__grid-col-6; max-width: $size__grid-col-6; }
+    > [#class*="#{$col}-7"]{ flex-basis: $size__grid-col-7; max-width: $size__grid-col-7; }
+    > [#class*="#{$col}-8"]{ flex-basis: $size__grid-col-8; max-width: $size__grid-col-8; }
+    > [#class*="#{$col}-9"]{ flex-basis: $size__grid-col-9; max-width: $size__grid-col-9; }
+    > [#class*="#{$col}-10"]{ flex-basis: $size__grid-col-10; max-width: $size__grid-col-10; }
+    > [#class*="#{$col}-11"]{ flex-basis: $size__grid-col-11; max-width: $size__grid-col-11; }
+    > [#class*="#{$col}-12"]{ flex-basis: $size__grid-col-12; max-width: $size__grid-col-12; }
+  }
+}
+
+
+@mixin makeFirstLast($mq)
+{
+  [#class~="#grid"],
+  [#class*="#grid-"],
+  [#class*="#grid_"] {
+    [#class*="#{$mq}-first"]{
+      order: -1;
+    }
+    [#class*="#{$mq}-last"]{
+      order: 1;
+    }
+  }
+}
+
+
+@mixin makeOff($off)
+{
+  [#class~="#grid"],
+  [#class*="#grid-"],
+  [#class*="#grid_"] {
+    > [data-push-left*="#{$off}-0"]{ margin-left: 0; }
+    > [data-push-left*="#{$off}-1"]{ margin-left: $size__grid-col-1; }
+    > [data-push-left*="#{$off}-2"]{ margin-left: $size__grid-col-2; }
+    > [data-push-left*="#{$off}-3"]{ margin-left: $size__grid-col-3; }
+    > [data-push-left*="#{$off}-4"]{ margin-left: $size__grid-col-4; }
+    > [data-push-left*="#{$off}-5"]{ margin-left: $size__grid-col-5; }
+    > [data-push-left*="#{$off}-6"]{ margin-left: $size__grid-col-6; }
+    > [data-push-left*="#{$off}-7"]{ margin-left: $size__grid-col-7; }
+    > [data-push-left*="#{$off}-8"]{ margin-left: $size__grid-col-8; }
+    > [data-push-left*="#{$off}-9"]{ margin-left: $size__grid-col-9; }
+    > [data-push-left*="#{$off}-10"]{ margin-left: $size__grid-col-10; }
+    > [data-push-left*="#{$off}-11"]{ margin-left: $size__grid-col-11; }
+
+    > [data-push-right*="#{$off}-0"]{ margin-right: 0; }
+    > [data-push-right*="#{$off}-1"]{ margin-right: $size__grid-col-1; }
+    > [data-push-right*="#{$off}-2"]{ margin-right: $size__grid-col-2; }
+    > [data-push-right*="#{$off}-3"]{ margin-right: $size__grid-col-3; }
+    > [data-push-right*="#{$off}-4"]{ margin-right: $size__grid-col-4; }
+    > [data-push-right*="#{$off}-5"]{ margin-right: $size__grid-col-5; }
+    > [data-push-right*="#{$off}-6"]{ margin-right: $size__grid-col-6; }
+    > [data-push-right*="#{$off}-7"]{ margin-right: $size__grid-col-7; }
+    > [data-push-right*="#{$off}-8"]{ margin-right: $size__grid-col-8; }
+    > [data-push-right*="#{$off}-9"]{ margin-right: $size__grid-col-9; }
+    > [data-push-right*="#{$off}-10"]{ margin-right: $size__grid-col-10; }
+    > [data-push-right*="#{$off}-11"]{ margin-right: $size__grid-col-11; }
+  }
+}
+
+
+[#class~="#grid"],
+[#class*="#grid-"]{
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 (-$size__grid-gutter/2);
+}
+
+[#class~="#col"],
+[#class*="#col-"]{
+  box-sizing: border-box;
+  padding: 0 ($size__grid-gutter/2) $size__grid-gutter-vertical;
+  max-width: 100%;
+}
+
+[#class~="#col"]{
+  flex: 1 1 0%;
+}
+
+[#class*="#col-"]{
+  flex: none;
+}
+
+
+[#class~="#grid"][#class~="#col"],
+[#class~="#grid"][#class*="#col-"],
+[#class~="#grid"][#class*="#col_"],
+[#class*="#grid-"][#class~="#col"],
+[#class*="#grid-"][#class*="#col-"],
+[#class*="#grid-"][#class*="#col_"],
+[#class*="#grid_"][#class~="#col"],
+[#class*="#grid_"][#class*="#col-"]{
+  margin: 0;
+  padding: 0;
+}
+
+
+[#class*="#grid-"]{
+  &[#class*="-noGutter"]{
+    margin: 0;
+    > [#class~="#col"],
+    > [#class*="#col-"]{
+      padding: 0;
+    }
+  }
+
+  &[#class*="-noWrap"]{
+    flex-wrap: nowrap;
+  }
+  &[#class*="-center"]{
+    justify-content: center;
+  }
+  &[#class*="-right"]{
+    justify-content: flex-end;
+    align-self: flex-end;
+    margin-left: auto;
+  }
+  &[#class*="-top"]{
+    align-items: flex-start;
+  }
+  &[#class*="-middle"]{
+    align-items: center;
+  }
+  &[#class*="-bottom"]{
+    align-items: flex-end;
+  }
+  &[#class*="-reverse"]{
+    flex-direction: row-reverse;
+  }
+  &[#class*="-column"] {
+    flex-direction: column;
+    > [#class*="#col-"] {
+      flex-basis: auto;
+    }
+  }
+  &[#class*="-column-reverse"]{
+    flex-direction: column-reverse;
+  }
+  &[#class*="-spaceBetween"]{
+    justify-content: space-between;
+  }
+  &[#class*="-spaceAround"]{
+    justify-content: space-around;
+  }
+
+  &[#class*="-equalHeight"] > [#class~="#col"],
+  &[#class*="-equalHeight"] > [#class*="#col-"]{
+    align-self: stretch;
+    > *{
+      height: 100%;
+    }
+  }
+  &[#class*="-noBottom"] > [#class~="#col"],
+  &[#class*="-noBottom"] > [#class*="#col-"]{
+    padding-bottom: 0;
+  }
+}
+
+[#class*="#col-"]{
+  &[#class*="-top"]{
+    align-self: flex-start;
+  }
+  &[#class*="-middle"]{
+    align-self: center;
+  }
+  &[#class*="-bottom"]{
+    align-self: flex-end;
+  }
+  &[#class*="-first"]{
+    order: -1;
+  }
+  &[#class*="-last"]{
+    order: 1;
+  }
+}
+
+@include makeGridByNumber(#grid);
+@each $mq-key, $mq-value in $size__grid-mq-list {
+  @media #{$mq-value} {
+    @include makeGridByNumber(_#{$mq-key});
+  }
+}
+
+@include makeCol(#col);
+@include makeOff(off);
+
+
+@each $mq-key, $mq-value in $size__grid-mq-list {
+  @media #{$mq-value} {
+    @include makeCol(_#{$mq-key});
+    @include makeOff(_#{$mq-key});
+    @include makeFirstLast(_#{$mq-key});
+  }
+}
+
+
+/*[#class*="#col-"]:not([#class*="#grid"]):not([#class*="#col-0"]) {
+  display: block;
+}
+[#class~="#grid"][#class*="#col-"]:not([#class*="#col-0"]) {
+  display: flex;
+}*/
+[#class*="#col-"][#class*="#col-0"] {
+  display: none;
+}
+
+@each $mq-key, $mq-value in $size__grid-mq-list {
+  @media #{$mq-value} {//_#{$mq-key}
+    [#class~="#grid"],
+    [#class*="#grid-"]{
+      > :not([#class*="_#{$mq-key}-0"]){
+        display: block;
+      }/*
+      &:not([#class*="_#{$mq-key}-0"]) {
+        display: flex;
+      }*/
+      >[#class*="_#{$mq-key}-0"]{
+      //&[#class*="-equalHeight"] > [#class*="_#{$mq-key}-0"]{
+        display: none;
+      }
+    }
+  }
+}
