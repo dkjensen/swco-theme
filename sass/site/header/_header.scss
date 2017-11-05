@@ -1,0 +1,38 @@
+.site-header {
+    margin: 0 0 2em;
+    
+    &.default,
+    &.inline {
+        .site-branding {
+            flex: 0 0 25%;
+        }
+    
+        .site-header-widgets {
+            flex: 1 1 0;
+            display: flex;
+            align-self: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+
+            .widget {
+                display: flex;
+                flex-direction: column;
+                flex: 0 0 33.333%
+            }
+        }
+    }
+    
+    &.inline {
+        .main-navigation {
+            flex: 1 1 0;
+            display: flex;
+            align-self: center;
+            justify-content: flex-end;
+        }
+    }
+
+    &.split {
+        
+    }
+	
+}

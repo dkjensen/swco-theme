@@ -100,3 +100,22 @@ if ( ! function_exists( '_s_entry_footer' ) ) :
 		);
 	}
 endif;
+
+if( ! function_exists( '_s_breadcrumbs' ) ) :
+	/**
+	 * Displays the sites breadcrumbs
+	 *
+	 * @return void
+	 */
+	function _s_breadcrumbs() {
+		if( get_theme_mod( 'breadcrumbs_enabled', true ) ) {
+			if( function_exists( 'yoast_breadcrumb' ) ) {
+				yoast_breadcrumb( '<div class="breadcrumbs">', '</div>' );
+			}elseif( function_exists( 'woocommerce_breadcrumb' ) ) {
+				woocommerce_breadcrumb();
+			}elseif( function_exists( 'bcn_display' ) ) {
+				bcn_display( false, true, false, false );
+			}
+		}
+	}	
+endif;

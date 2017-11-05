@@ -102,13 +102,23 @@ add_action( 'after_setup_theme', '_s_content_width', 0 );
  */
 function _s_widgets_init() {
 	register_sidebar( array(
+		'name'          => esc_html__( 'Header', '_s' ),
+		'id'            => 'header-1',
+		'description'   => esc_html__( 'Add widgets here.', '_s' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<div class="h3 widget-title">',
+		'after_title'   => '</div>',
+	) );
+
+	register_sidebar( array(
 		'name'          => esc_html__( 'Sidebar', '_s' ),
 		'id'            => 'sidebar-1',
 		'description'   => esc_html__( 'Add widgets here.', '_s' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
+		'before_title'  => '<div class="h3 widget-title">',
+		'after_title'   => '</div>',
 	) );
 }
 add_action( 'widgets_init', '_s_widgets_init' );
@@ -117,10 +127,10 @@ add_action( 'widgets_init', '_s_widgets_init' );
  * Enqueue scripts and styles.
  */
 function _s_scripts() {
-	wp_enqueue_style( '_s-style', get_stylesheet_uri() );
+	wp_enqueue_style( '_s-style', get_stylesheet_uri(), array(), filemtime( get_template_directory() . '/style.css' ) );
+	wp_enqueue_style( '_s-custom', get_theme_file_uri( 'custom.css' ), array(), filemtime( get_theme_file_path( 'custom.css' ) ) );
 
 	wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
 	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -162,3 +172,16 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+/**
+ * Load WP-SCSS configuration
+ */
+if( defined( 'WPSCSS_PLUGIN_DIR' ) ) {
+	require get_template_directory() . '/inc/wpscss.php';
+}
+
+add_action( 'the_post', function() {
+	if( function_exists( 'woocommerce_breadcrumb' ) ) {
+		woocommerce_breadcrumb();
+	}
+});

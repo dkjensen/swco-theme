@@ -1,8 +1,5 @@
 .main-navigation {
-	clear: both;
 	display: block;
-	float: left;
-	width: 100%;
 
 	ul {
 		display: none;
@@ -50,6 +47,7 @@
 	}
 
 	li {
+		@include font-size(1);
 		float: left;
 		position: relative;
 
@@ -59,8 +57,10 @@
 	}
 
 	a {
+		color: inherit;
 		display: block;
 		text-decoration: none;
+		padding: .5em;
 	}
 
 	.current_page_item > a,
@@ -80,8 +80,15 @@
 	.menu-toggle {
 		display: none;
 	}
-	.main-navigation ul {
-		display: block;
+	.main-navigation {
+		.menu > ul {
+			display: block;
+			margin: 0 -1em;
+
+			& > li {
+				padding: 0 1em;
+			}
+		}
 	}
 }
 

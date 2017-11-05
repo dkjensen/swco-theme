@@ -22,7 +22,10 @@ var onError = function( err ) {
 
 // Sass
 gulp.task('sass', function() {
-  return gulp.src('./sass/**/*.scss')
+  return gulp.src([
+    '!./sass/custom/*.scss',
+    './sass/**/*.scss'
+  ])
   .pipe(plumber({ errorHandler: onError }))
   .pipe(sass({
     outputStyle: 'compressed'
@@ -68,7 +71,7 @@ gulp.task('watch', function() {
   browserSync.init({
     files: ['./**/*.php'],
     proxy: {
-      target: 'https://vccw.dev/'
+      target: 'http://malthunter.test'
     },
     notify: false
   });
