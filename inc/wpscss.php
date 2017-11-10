@@ -32,26 +32,27 @@ function _s_wpscss_options_defaults( $default, $option, $passed_default ) {
 }
 add_filter( 'default_option_wpscss_options', '_s_wpscss_options_defaults', 10, 3 );
 
-/*
-$seo_default_colors = array(
-	'color-text'	=> '#333333',
-	'color-button'  => '#333333',
-	'color-link' 	=> '#dddddd',
-	'color-white'	=> '#ffffff',
-	'color-outline'	=> '#eeeeee',
-);
-
-function seo_set_variables(){
+/**
+ * Variables from customizer to replace
+ *
+ * @return array
+ */
+function _s_wpscss_variables() {
     
-    global $seo_default_colors;
+    $default_variables = array(
+		'color__link'	=> 'royalblue',
+	);
 
     $variables = array();
 
-    foreach( $seo_default_colors as $key => $value ) {
+    foreach( $default_variables as $key => $value ) {
     	$variables[$key] = get_theme_mod( $key, $value );
     }
 
 	return $variables;
 }
-//add_filter( 'wp_scss_variables', 'seo_set_variables' );
-*/
+add_filter( 'wp_scss_variables', '_s_wpscss_variables' );
+
+if ( is_customize_preview() && ! defined( 'WP_SCSS_ALWAYS_RECOMPILE' ) ) {
+	define( 'WP_SCSS_ALWAYS_RECOMPILE', true );
+}

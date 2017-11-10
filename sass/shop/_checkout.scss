@@ -1,6 +1,10 @@
 /**
  * Checkout
  */
+.quantity {
+	max-width: 100%;
+}
+
 @media screen and (min-width: 768px) {
 	.col2-set {
 		.form-row-first {

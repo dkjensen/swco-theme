@@ -39,7 +39,18 @@ function _s_customize_register( $wp_customize ) {
 	$wp_customize->add_section( '_s_woocommerce', array(
         'title'    => __( 'WooCommerce', '_s' ),
         'priority' => 120,
-    ) );
+	) );
+	
+	$wp_customize->add_setting( 'link_color', array(
+		'type' 				=> 'option',
+		'sanitize_callback' => 'sanitize_text_field'
+	) );
+	
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_color', array(
+		'label' => 'Link Color',
+		'section' => 'colors',
+		'settings' => 'link_color',
+	) ) );
 
 	/**
 	 * Shop Layout

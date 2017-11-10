@@ -179,9 +179,3 @@ if ( class_exists( 'WooCommerce' ) ) {
 if( defined( 'WPSCSS_PLUGIN_DIR' ) ) {
 	require get_template_directory() . '/inc/wpscss.php';
 }
-
-add_action( 'the_post', function() {
-	if( function_exists( 'woocommerce_breadcrumb' ) ) {
-		woocommerce_breadcrumb();
-	}
-});

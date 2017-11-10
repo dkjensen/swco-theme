@@ -9,8 +9,9 @@
 
 
 $shop_layout = get_theme_mod( 'shop_layout', 'sidebar-left' );
+$single_template = get_theme_mod( 'product_layout', 'hero' );
 
-if ( ! is_active_sidebar( 'sidebar-shop' ) || $shop_layout === 'sidebar-none' ) {
+if ( ! is_active_sidebar( 'sidebar-shop' ) || $shop_layout === 'sidebar-none' || $single_template === 'hero' ) {
 	return;
 }
 ?>

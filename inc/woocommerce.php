@@ -86,6 +86,14 @@ add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 function _s_woocommerce_active_body_class( $classes ) {
 	$classes[] = 'woocommerce-active';
 
+	if( is_singular( 'product' ) ) {
+		$layout = get_theme_mod( 'product_layout', 'hero' );
+
+		if( $layout === 'hero' ) {
+			$classes[] = 'hero';
+		}
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', '_s_woocommerce_active_body_class' );
@@ -207,6 +215,14 @@ if ( ! function_exists( '_s_woocommerce_wrapper_after' ) ) {
 	}
 }
 add_action( 'woocommerce_after_main_content', '_s_woocommerce_wrapper_after' );
+
+remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cart_totals', 10 );
+
+add_action( 'woocommerce_before_cart_table', function() { print '<div class="col-8">'; }, 100 );
+add_action( 'woocommerce_after_cart_table', function() { print '</div>'; }, 0 );
+
+add_action( 'woocommerce_after_cart_table', 'woocommerce_cart_totals' );
+
 
 /**
  * Sample implementation of the WooCommerce Mini Cart.
