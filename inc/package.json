@@ -1,0 +1,42 @@
+{
+  "name": "malthunter",
+  "version": "1.0.0",
+  "description": "Default theme for malthunter.com",
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Automattic/_s.git"
+  },
+  "author": "David Jensen",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Automattic/_s/issues"
+  },
+  "homepage": "https://github.com/Automattic/_s#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-filter": "^4.0.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-line-ending-corrector": "^1.0.1",
+    "gulp-merge-media-queries": "^0.2.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-rtlcss": "^1.0.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-sort": "^2.0.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.5.3",
+    "gulp-uglifycss": "^1.0.6",
+    "gulp-util": "^3.0.7",
+    "gulp-wp-pot": "^1.2.2"
+  },
+  "dependencies": {
+    "gridlex": "^2.4.1"
+  }
+}
