@@ -1,22 +1,60 @@
 button,
 input[type="button"],
 input[type="reset"],
-input[type="submit"] {
-	border: 1;
-	border-color: $color__border-button;
-	border-radius: 3px;
+input[type="submit"],
+.button,
+.btn {
+	color: $color__button;
+	@include font-size(1);
+	text-align: center;
+	text-decoration: none;
+	line-height: $size__button-height;
+	white-space: nowrap;
+	border: 0;
 	background: $color__background-button;
-	color: rgba(0, 0, 0, .8);
-	@include font-size(0.75);
-	line-height: 1;
-	padding: .6em 1em .4em;
+	padding: 0 .5em;
+	height: $size__button-height;
+	position: relative;
+	overflow: hidden;
 
-	&:hover {
-		border-color: $color__border-button-hover;
-	}
-
+	&:hover,
 	&:active,
 	&:focus {
-		border-color: $color__border-button-focus;
+		color: $color__button-hover;
+		text-decoration: none;
+		background: $color__background-button-hover;
+		outline: none;
 	}
+
+	&.loading {
+		text-indent: -99em;
+
+		&:before {
+			content: '';
+			box-sizing: border-box;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 20px;
+			height: 20px;
+			margin-top: -10px;
+			margin-left: -10px;
+			border-radius: 50%;
+			border: 2px solid transparent;
+			border-top-color: $color__button;
+			border-bottom-color: $color__button;
+			animation: spinner .75s linear infinite;
+		}
+	}
+
+	&.added:before {
+		content: '\2713';
+		color: $color__button;
+		font-weight: 700;
+		margin: 0 10px 0 0;
+	}
+}
+
+@keyframes spinner {
+	to { transform: rotate(360deg); }
 }

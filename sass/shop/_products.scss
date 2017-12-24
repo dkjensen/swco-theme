@@ -19,8 +19,38 @@ ul.products {
 			display: block;
 		}
 
+		a {
+			text-decoration: none;
+		}
+
 		.button {
 			display: block;
+		}
+
+		.onsale {
+			color: $color__button;
+			font-family: $font__alt;
+			font-size: .7em;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			position: absolute;
+			top: 1em;
+			left: -5px;
+			background: $color__background-button;
+			padding: 2px 5px;
+		}
+
+		.onsale:after {
+			content: '';
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 5px 5px 0;
+			border-color: transparent rgba(0, 0, 0, 0.23) transparent transparent;
+			position: absolute;
+			top: 100%;
+			left: 0;
 		}
 	}
 }

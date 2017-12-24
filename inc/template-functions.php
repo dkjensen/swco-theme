@@ -30,3 +30,19 @@ function _s_pingback_header() {
 	}
 }
 add_action( 'wp_head', '_s_pingback_header' );
+
+
+function _s_show_breadcrumbs() {
+	_s_breadcrumbs();
+}
+add_action( 'before_site_main', '_s_show_breadcrumbs' );
+
+
+function _s_custom_logo( $logo, $blog_id ) {
+	if( empty( $logo ) ) {
+		$logo = sprintf( '<a href="%s" rel="home">%s</a>', esc_url( home_url( '/' ) ),  get_bloginfo( 'name' ) );
+	}
+
+	return $logo;
+}
+add_filter( 'get_custom_logo', '_s_custom_logo', 10, 2 );

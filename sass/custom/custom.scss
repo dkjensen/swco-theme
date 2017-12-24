@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Majesti Banner';
+    src: url('MajestiBanner-Book.woff2') format('woff2'),
+        url('MajestiBanner-Book.woff') format('woff'),
+        url('MajestiBanner-Book.svg#MajestiBanner-Book') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+a {
+    color: $color__link;
+}
+
+.site-branding {
+    font-family: '', serif;
+}

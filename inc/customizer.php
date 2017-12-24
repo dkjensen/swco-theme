@@ -25,6 +25,103 @@ function _s_customize_register( $wp_customize ) {
 			'render_callback' => '_s_customize_partial_blogdescription',
 		) );
 	}
+
+	$wp_customize->add_section( '_s_typography', array(
+        'title'    => __( 'Typography', '_s' ),
+        'priority' => 30,
+	) );
+	
+	$wp_customize->add_setting( '_s_typography', array(
+		'type' 				=> 'option',
+		'sanitize_callback' => 'sanitize_text_field'
+	) );
+
+	$wp_customize->add_control( '_s_typography_main_font', array(
+		'label'			=> __( 'Main font', '_s' ),
+		'section'		=> '_s_typography',
+		'settings'		=> '_s_typography',
+		'default'		=> '"Georgia", serif'
+	) );
+	
+	$wp_customize->add_section( '_s_woocommerce', array(
+        'title'    => __( 'WooCommerce', '_s' ),
+        'priority' => 120,
+	) );
+	
+	$wp_customize->add_setting( 'link_color', array(
+		'type' 				=> 'option',
+		'sanitize_callback' => 'sanitize_text_field'
+	) );
+	
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_color', array(
+		'label' => 'Link Color',
+		'section' => 'colors',
+		'settings' => 'link_color',
+	) ) );
+
+	/**
+	 * Shop Layout
+	 */
+    $wp_customize->add_setting( 'shop_layout', array(
+        'default'        => 'sidebar-left',
+        'capability'     => 'edit_theme_options',
+	) );
+	
+    $wp_customize->add_control( '_s_woocommerce_shop_layout', array(
+		'type'		 	=> 'radio',
+		'label'      	=> __( 'Shop Layout', '_s' ),
+		'description' 	=> __( 'Select the layout for the main WooCommerce shop page.', '_s' ),
+        'section'    	=> '_s_woocommerce',
+		'settings'   	=> 'shop_layout',
+		'choices'    	=> array(
+			'sidebar-none' 		=> __( 'No Sidebar', '_s' ),
+			'sidebar-left'		=> __( 'Left Sidebar', '_s' ),
+			'sidebar-right'		=> __( 'Right Sidebar', '_s' ),
+		)
+	) );
+
+	$wp_customize->add_section( '_s_options', array(
+        'title'    => __( 'Theme Options', '_s' ),
+        'priority' => 130,
+	) );
+
+	$wp_customize->add_setting( 'header_layout', array(
+        'default'        => 'inline',
+        'capability'     => 'edit_theme_options',
+	) );
+	
+    $wp_customize->add_control( '_s_options_header_layout', array(
+		'type'		 	=> 'radio',
+		'label'      	=> __( 'Header Layout', '_s' ),
+		'description' 	=> __( 'Select the layout for the header.', '_s' ),
+        'section'    	=> '_s_options',
+		'settings'   	=> 'header_layout',
+		'choices'    	=> array(
+			'default' 		=> __( 'Default', '_s' ),
+			'inline'		=> __( 'Inline', '_s' ),
+			'split'			=> __( 'Split', '_s' ),
+		)
+	) );
+	
+	/**
+	 * Single Product Layout
+	 */
+	$wp_customize->add_setting( 'product_layout', array(
+        'default'        => 'default',
+        'capability'     => 'edit_theme_options',
+	) );
+	
+    $wp_customize->add_control( '_s_woocommerce_product_layout', array(
+		'type'		 	=> 'radio',
+		'label'      	=> __( 'Single Product Template', '_s' ),
+		'description' 	=> __( 'Default Template inherits from the \'Shop Layout\' option.', '_s' ),
+        'section'    	=> '_s_woocommerce',
+		'settings'   	=> 'product_layout',
+		'choices'   	 => array(
+			'default'			=> __( 'Default Template', '_s' ),
+			'hero'				=> __( 'Hero Template', '_s' ),
+		)
+	) );
 }
 add_action( 'customize_register', '_s_customize_register' );
 

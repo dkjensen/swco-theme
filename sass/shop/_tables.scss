@@ -14,13 +14,10 @@ table.shop_table_responsive {
 
 	tr {
 		td {
-			display: block;
-			text-align: right;
-			clear: both;
+			display: flex;
 
-			&:before {
+			&.product-subtotal:before {
 				content: attr(data-title) ': ';
-				float: left;
 			}
 
 			&.product-remove {
@@ -31,6 +28,25 @@ table.shop_table_responsive {
 				&:before {
 					display: none;
 				}
+			}
+
+			&.product-thumbnail {
+				float: right;
+				width: 30%;
+			}
+
+			&.product-quantity,
+			&.product-subtotal {
+				width: 32.5%;
+				float: left;
+			}
+
+			&.product-subtotal {
+				color: $color__button;
+				background-color: $color__background-button;
+				height: $size__input-height;
+				line-height: $size__input-height;
+				padding: 0 .5em;
 			}
 
 			&.actions,

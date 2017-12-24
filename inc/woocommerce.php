@@ -23,6 +23,26 @@ function _s_woocommerce_setup() {
 }
 add_action( 'after_setup_theme', '_s_woocommerce_setup' );
 
+
+/**
+ * Register a sidebar for WooCommerce screens
+ *
+ * @return void
+ */
+function _s_woocommerce_widgets() {
+	register_sidebar( array(
+		'name'          => esc_html__( 'Shop Sidebar', '_s' ),
+		'id'            => 'sidebar-shop',
+		'description'   => esc_html__( 'Add widgets here.', '_s' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<div class="h3 widget-title">',
+		'after_title'   => '</div>',
+	) );
+}
+add_action( 'widgets_init', '_s_woocommerce_widgets' );
+
+
 /**
  * WooCommerce specific scripts & stylesheets.
  *
@@ -65,6 +85,14 @@ add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
  */
 function _s_woocommerce_active_body_class( $classes ) {
 	$classes[] = 'woocommerce-active';
+
+	if( is_singular( 'product' ) ) {
+		$layout = get_theme_mod( 'product_layout', 'hero' );
+
+		if( $layout === 'hero' ) {
+			$classes[] = 'hero';
+		}
+	}
 
 	return $classes;
 }
@@ -149,6 +177,11 @@ add_action( 'woocommerce_after_shop_loop', '_s_woocommerce_product_columns_wrapp
 remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
 remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
 
+/**
+ * Remove default breadcrumbs
+ */
+remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+
 if ( ! function_exists( '_s_woocommerce_wrapper_before' ) ) {
 	/**
 	 * Before Content.
@@ -159,7 +192,7 @@ if ( ! function_exists( '_s_woocommerce_wrapper_before' ) ) {
 	 */
 	function _s_woocommerce_wrapper_before() {
 		?>
-		<div id="primary" class="content-area">
+		<div id="primary" class="content-area col">
 			<main id="main" class="site-main" role="main">
 		<?php
 	}
@@ -182,6 +215,14 @@ if ( ! function_exists( '_s_woocommerce_wrapper_after' ) ) {
 	}
 }
 add_action( 'woocommerce_after_main_content', '_s_woocommerce_wrapper_after' );
+
+remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cart_totals', 10 );
+
+add_action( 'woocommerce_before_cart_table', function() { print '<div class="col-8">'; }, 100 );
+add_action( 'woocommerce_after_cart_table', function() { print '</div>'; }, 0 );
+
+add_action( 'woocommerce_after_cart_table', 'woocommerce_cart_totals' );
+
 
 /**
  * Sample implementation of the WooCommerce Mini Cart.
