@@ -1,5 +1,5 @@
 <div class="grid">
-    <div class="site-branding">
+    <div class="site-branding col">
         <?php the_custom_logo(); ?>
     </div><!-- .site-branding -->
     <nav id="site-navigation" class="main-navigation col">
