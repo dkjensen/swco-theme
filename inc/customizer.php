@@ -20,9 +20,15 @@ function _s_customize_register( $wp_customize ) {
 			'selector'        => '.site-title a',
 			'render_callback' => '_s_customize_partial_blogname',
 		) );
+
 		$wp_customize->selective_refresh->add_partial( 'blogdescription', array(
 			'selector'        => '.site-description',
 			'render_callback' => '_s_customize_partial_blogdescription',
+		) );
+
+		$wp_customize->selective_refresh->add_partial( 'site_info', array(
+			'selector'        => '.site-info',
+			'render_callback' => '_s_customize_partial_site_info',
 		) );
 	}
 
@@ -39,6 +45,47 @@ function _s_customize_register( $wp_customize ) {
 	$wp_customize->add_section( '_s_woocommerce', array(
         'title'    => __( 'WooCommerce', '_s' ),
         'priority' => 120,
+	) );
+
+	/**
+	 * Footer
+	 */
+	$wp_customize->add_section( '_s_footer', array(
+        'title'    => __( 'Footer', '_s' ),
+        'priority' => 150,
+	) );
+
+	$wp_customize->add_setting( 'footer_columns', array(
+		'default' 			=> '1',
+		'capability'     	=> 'edit_theme_options',
+	) );
+	
+	$wp_customize->add_control( '_s_footer_columns', array(
+		'label' 		=> __( 'Footer Columns', '_s' ),
+		'section' 		=> '_s_footer',
+		'settings' 		=> 'footer_columns',
+		'type'			=> 'radio',
+		'choices'		=> array(
+			'1'				=> __( 'One Column', '_s' ),
+			'2'				=> __( 'Two Columns', '_s' ),
+			'3'				=> __( 'Three Columns', '_s' ),
+			'4'				=> __( 'Four Columns', '_s' ),
+			'5'				=> __( 'Five Columns', '_s' ),
+			'6'				=> __( 'Six Columns', '_s' ),
+		)
+	) );
+
+	$wp_customize->add_setting( 'site_info', array(
+		'default' 			=> '',
+		'capability'     	=> 'edit_theme_options',
+		'transport'			=> 'postMessage',
+	) );
+	
+	$wp_customize->add_control( '_s_footer_site_info', array(
+		'label' 		=> __( 'Footer Site Info', '_s' ),
+		'section' 		=> '_s_footer',
+		'settings' 		=> 'site_info',
+		'type'			=> 'textarea',
 	) );
 	
 	$wp_customize->add_setting( 'link_color', array(
@@ -111,6 +158,15 @@ function _s_customize_partial_blogname() {
  */
 function _s_customize_partial_blogdescription() {
 	bloginfo( 'description' );
+}
+
+/**
+ * Render the footer site info section
+ *
+ * @return void
+ */
+function _s_customize_partial_site_info() {
+	print apply_filters( 'comment_text', get_theme_mod( 'site_info' ) );
 }
 
 /**

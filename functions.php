@@ -120,6 +120,18 @@ function _s_widgets_init() {
 		'before_title'  => '<div class="h3 widget-title">',
 		'after_title'   => '</div>',
 	) );
+
+	$footer_columns = (int) get_theme_mod( 'footer_columns', '1' );
+
+	register_sidebars( ( ( $footer_columns < 1 || $footer_columns > 6 ) ? 1 : $footer_columns ), array(
+		'name'          => __( 'Footer %d', '_s' ),
+		'id'            => 'footer',
+		'description'   => esc_html__( 'Add widgets here.', '_s' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<div class="h3 widget-title footer-widget-title">',
+		'after_title'   => '</div>',
+	) );
 }
 add_action( 'widgets_init', '_s_widgets_init' );
 
