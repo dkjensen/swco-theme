@@ -79,7 +79,8 @@
 		display: none;
 	}
 	.main-navigation {
-		.menu > ul {
+		.menu > ul,
+		ul.menu {
 			display: block;
 			margin: 0 -1em;
 
