@@ -12,14 +12,16 @@ input[type="submit"],
 	white-space: nowrap;
 	border: 0;
 	background: $color__background-button;
-	padding: 0 .5em;
+	padding: 0 1em;
 	height: $size__button-height;
 	position: relative;
 	overflow: hidden;
+	display: inline-block;
 
 	&:hover,
 	&:active,
-	&:focus {
+	&:focus,
+	&:visited {
 		color: $color__button-hover;
 		text-decoration: none;
 		background: $color__background-button-hover;
