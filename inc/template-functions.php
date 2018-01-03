@@ -39,7 +39,9 @@ add_action( 'before_site_main', '_s_show_breadcrumbs' );
 
 
 function _s_custom_logo( $logo, $blog_id ) {
-	if( empty( $logo ) ) {
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+
+	if( empty( $custom_logo_id ) ) {
 		$logo = sprintf( '<a href="%s" class="custom-logo-link" rel="home">%s</a>', esc_url( home_url( '/' ) ),  get_bloginfo( 'name' ) );
 	}
 
