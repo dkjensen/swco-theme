@@ -17,7 +17,7 @@ function _s_customize_register( $wp_customize ) {
 
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial( 'blogname', array(
-			'selector'        => '.site-title a',
+			'selector'        => '.site-branding',
 			'render_callback' => '_s_customize_partial_blogname',
 		) );
 

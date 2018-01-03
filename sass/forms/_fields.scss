@@ -20,6 +20,8 @@ textarea {
 	height: $size__input-height;
 	padding: 0 .5em;
 	max-width: 100%;
+	outline: none;
+	box-shadow: none;
 
 	&:focus {
 		color: $color__text-input-focus;

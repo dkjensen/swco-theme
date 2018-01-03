@@ -1,0 +1,28 @@
+%notification {
+    color: $color__message;
+    text-align: center;
+    text-shadow: none;
+    border: none;
+    font-weight: normal;
+    padding: 1em;
+    background: $color__message-notice;
+    box-shadow: none;
+}
+
+.notification {
+    @extend %notification;
+
+    p:not(:last-child) {
+        margin: 0;
+    }
+
+    &.error {
+        @extend %notification;
+        background: $color__message-error;
+    }
+
+    &.success {
+        @extend %notification;
+        background: $color__message-success;
+    }
+}

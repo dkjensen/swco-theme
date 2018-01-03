@@ -1,0 +1,93 @@
+div.gform_wrapper {
+
+    div.validation_error {
+        @extend .notification.error;
+    }
+
+    .gform_body {
+
+        .gf_progressbar {
+            width: 100%;
+        }
+
+        ul.gform_fields {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-left: -( $gl-gutter / 2 ) !important;
+            margin-right: -( $gl-gutter / 2 ) !important;
+
+            li.gfield {
+                flex: 1 0 auto;
+                width: 100%;
+                padding-left: ( $gl-gutter / 2 );
+                padding-right: ( $gl-gutter / 2 );
+
+                &.gfield_error {
+                    @extend .notification.error;
+
+                    .validation_message {
+                        color: inherit;
+                    }
+                }
+
+                label.gfield_label {
+                    color: inherit;
+                }
+
+                .ginput_complex.ginput_container {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    margin: 0 -.5rem;
+                    width: auto;
+
+                    & > span {
+                        flex: 1 0 auto;
+                        padding: 0 .5rem;
+                        width: auto;
+                        display: block;
+                        margin: 0;
+
+                        &.ginput_full {
+                            flex: 1 1 100%;
+                        }
+
+                        &.ginput_left,
+                        &.ginput_right {
+                            flex: 1 1 50%;
+                        }
+                    }
+                }
+
+                .gform_fileupload_multifile .gform_drop_area {
+                    border: 4px dashed $color__border-input;
+                    padding: 1em;
+                    text-align: center;
+                    border-radius: 0;
+
+                    input.button.gform_button_select_files {
+                        padding: $size__button-padding !important;
+                    }
+                }
+
+                input:not([type=button]):not([type=reset]):not([type=file]),
+                select,
+                textarea {
+                    width: 100%;
+                }
+
+                input[type=file] {
+                    width: auto;
+                }
+
+                @media screen and (min-width: 36em) {
+                    &.gf_left_half,
+                    &.gf_right_half {
+                        width: 50%;
+                    }
+                }
+            }
+        }
+    }
+}

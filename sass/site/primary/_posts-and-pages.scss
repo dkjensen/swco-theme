@@ -4,6 +4,17 @@
 
 .hentry {
 	margin: 0 0 1.5em;
+
+	.entry-meta,
+	.entry-footer {
+		& > span {
+			display: inline-block;
+
+			&:not(:last-child) {
+				margin: 0 1em 0 0;
+			}
+		}
+	}
 }
 
 .updated:not(.published) {
@@ -20,3 +31,4 @@
 	clear: both;
 	margin: 0 0 1.5em;
 }
+

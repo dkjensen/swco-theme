@@ -12,11 +12,12 @@ input[type="submit"],
 	white-space: nowrap;
 	border: 0;
 	background: $color__background-button;
-	padding: 0 1em;
+	padding: $size__button-padding;
 	height: $size__button-height;
 	position: relative;
 	overflow: hidden;
 	display: inline-block;
+	vertical-align: top;
 
 	&:hover,
 	&:active,
