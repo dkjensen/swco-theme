@@ -71,7 +71,7 @@ gulp.task('watch', function() {
   browserSync.init({
     files: ['./**/*.php'],
     proxy: {
-      target: 'http://malthunter.test'
+      target: 'http://photoboothrentals.test'
     },
     notify: false
   });
