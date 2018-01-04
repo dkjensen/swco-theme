@@ -1,10 +1,10 @@
-$size__container: 80em;
+$size__container: 1280px;
 
 $gl-gutter: 1rem !default;
 
 $gl-mq-list: (
-  lg: "screen and (max-width: 80em)",
-  md: "screen and (max-width: 64em)",
-  sm: "screen and (max-width: 48em)",
-  xs: "screen and (max-width: 36em)"
+  lg: 80em,
+  md: 64em,
+  sm: 48em,
+  xs: 36em
 ) !default;

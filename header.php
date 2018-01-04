@@ -9,7 +9,7 @@
  * @package _s
  */
 
-$header_layout = get_theme_mod( 'header_layout', 'inline' );
+$header_layout = get_theme_mod( 'header_layout', 'default' );
 
 ?>
 <!doctype html>

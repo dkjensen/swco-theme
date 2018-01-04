@@ -48,6 +48,31 @@ function _s_customize_register( $wp_customize ) {
 	) );
 
 	/**
+	 * Header
+	 */
+	$wp_customize->add_section( '_s_header', array(
+        'title'    => __( 'Header', '_s' ),
+        'priority' => 140,
+	) );
+
+	$wp_customize->add_setting( 'header_layout', array(
+		'default' 			=> 'default',
+		'capability'     	=> 'edit_theme_options',
+	) );
+	
+	$wp_customize->add_control( '_s_header_layout', array(
+		'label' 		=> __( 'Header Layout', '_s' ),
+		'section' 		=> '_s_header',
+		'settings' 		=> 'header_layout',
+		'type'			=> 'radio',
+		'choices'		=> array(
+			'default'		=> __( 'Default', '_s' ),
+			'inline'		=> __( 'Inline', '_s' ),
+			'split'			=> __( 'Split', '_s' ),
+		)
+	) );
+
+	/**
 	 * Footer
 	 */
 	$wp_customize->add_section( '_s_footer', array(

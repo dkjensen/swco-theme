@@ -1,18 +1,20 @@
-<div class="grid">
-    <div class="site-branding">
+<div class="grid site-header-row-1">
+    <div class="site-branding col">
         <?php the_custom_logo(); ?>
     </div><!-- .site-branding -->
 
     <?php if( is_active_sidebar( 'header-1' ) ) : ?>
 
-    <div class="site-header-widgets col-right">
-        <?php dynamic_sidebar( 'header-1' ); ?>
+    <div class="site-header-widgets col">
+        <div class="grid">
+            <?php dynamic_sidebar( 'header-1' ); ?>
+        </div>
     </div><!-- .site-header-widgets -->
 
     <?php endif; ?>
 </div>
-<div class="grid">
-    <nav id="site-navigation" class="main-navigation">
+<div class="grid site-header-row-2">
+    <nav id="site-navigation" class="main-navigation col-12">
         <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', '_s' ); ?></button>
         <?php
             wp_nav_menu( array(
