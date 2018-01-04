@@ -15,9 +15,7 @@
 
     <?php if( is_active_sidebar( 'header-1' ) ) : ?>
     <div class="site-header-widgets col">
-        <div class="grid">
-            <?php dynamic_sidebar( 'header-1' ); ?>
-        </div>
+        <?php dynamic_sidebar( 'header-1' ); ?>
     </div><!-- .site-header-widgets -->
     <?php endif; ?>
 </div>

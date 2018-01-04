@@ -55,11 +55,10 @@
     &.inline {
 
         .site-header-widgets {
+            display: flex;
             flex: 0 0 auto;
-
-            .grid {
-                flex-wrap: nowrap;
-            }
+            flex-wrap: nowrap;
+            align-items: center;
 
             .widget:not(:first-child) {
                 margin-left: 3em;
