@@ -7,6 +7,25 @@
  * @package _s
  */
 
+
+if( ! function_exists( '_s_header_classes' ) ) :
+	/**
+	 * Outputs CSS classes for .site-header
+	 *
+	 * @param array $classes
+	 */
+	function _s_header_classes( $classes = [] ) {
+		$classes[] = get_theme_mod( 'header_layout', 'default' );
+		
+		if( is_page() && get_page_template_slug( get_queried_object_id() ) === 'templates/page-hero.php' ) {
+			$classes[] = 'hero';
+		}
+
+		echo implode( ' ', array_map( 'esc_attr', $classes ) );
+	}
+
+endif;
+
 if ( ! function_exists( '_s_posted_on' ) ) :
 	/**
 	 * Prints HTML with meta information for the current post-date/time and author.

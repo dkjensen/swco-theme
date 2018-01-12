@@ -1,3 +1,6 @@
+$color__primary: #222222;
+$color__secondary: #ccc;
+
 $color__background-body: #fff;
 $color__background-screen: #f1f1f1;
 $color__background-hero: #222222;
@@ -23,3 +26,11 @@ $color__message: #ffffff;
 $color__message-success: #65D1A2;
 $color__message-error: #d16587;
 $color__message-notice: #80bfdc;
+
+.color--primary {
+    color: $color__primary;
+}
+
+.color--secondary {
+    color: $color__secondary;
+}

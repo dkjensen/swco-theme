@@ -1,6 +1,20 @@
 // @import "../layout/content-sidebar";
 // @import "../layout/sidebar-content";
 
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+}
+
+.site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
 .container {
     width: $size__container;
     max-width: 100%;
@@ -17,6 +31,11 @@
 ## Header
 --------------------------------------------------------------*/
 @import "header/header";
+
+/*--------------------------------------------------------------
+## Footer
+--------------------------------------------------------------*/
+@import "footer/footer";
 
 /*--------------------------------------------------------------
 ## Posts and pages

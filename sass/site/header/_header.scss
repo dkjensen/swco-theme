@@ -1,6 +1,8 @@
 .site-header {
     margin: 0 0 2em;
     padding: 1em 0;
+
+    @import "widgets";
     
     .site-branding,
     .main-navigation,
@@ -22,6 +24,7 @@
             width: 100%;
         }
     
+        .top-header-widgets,
         .site-header-widgets {
             .grid {
                 width: 100%;

@@ -164,6 +164,22 @@ function _s_customize_register( $wp_customize ) {
 			'hero'				=> __( 'Hero Template', '_s' ),
 		)
 	) );
+
+	$wp_customize->add_setting( 'cart_menu_dropdown', array(
+        'default'        => 'show',
+        'capability'     => 'edit_theme_options',
+	) );
+
+	$wp_customize->add_control( '_s_woocommerce_cart_menu_dropdown', array(
+		'type'		 	=> 'radio',
+		'label'      	=> __( 'Show Cart Dropdown', '_s' ),
+        'section'    	=> '_s_woocommerce',
+		'settings'   	=> 'cart_menu_dropdown',
+		'choices'   	 => array(
+			'show'				=> __( 'Show', '_s' ),
+			'hide'				=> __( 'Hide', '_s' ),
+		)
+	) );
 }
 add_action( 'customize_register', '_s_customize_register' );
 

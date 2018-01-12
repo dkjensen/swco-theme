@@ -1,3 +1,9 @@
+<?php if( is_active_sidebar( 'header-top' ) ) : ?>
+<div class="grid site-header-row-top top-header-widgets">
+    <?php dynamic_sidebar( 'header-top' ); ?>
+</div>
+<?php endif; ?>
+
 <div class="grid site-header-row-1">
     <div class="site-branding col">
         <?php the_custom_logo(); ?>

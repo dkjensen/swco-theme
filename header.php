@@ -9,8 +9,6 @@
  * @package _s
  */
 
-$header_layout = get_theme_mod( 'header_layout', 'default' );
-
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -26,10 +24,10 @@ $header_layout = get_theme_mod( 'header_layout', 'default' );
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', '_s' ); ?></a>
 
-	<header id="masthead" class="site-header <?php print esc_attr( $header_layout ); ?>">
+	<header id="masthead" class="site-header <?php _s_header_classes(); ?>">
 		<div class="container">
 			<?php
-			switch( $header_layout ) {
+			switch( get_theme_mod( 'header_layout', 'default' ) ) {
 				case 'split' :
 					get_template_part( 'template-parts/header/header', 'split' );
 					break;
@@ -42,6 +40,13 @@ $header_layout = get_theme_mod( 'header_layout', 'default' );
 			?>
 		</div><!-- .container -->
 	</header><!-- #masthead -->
+
+	<?php
+		/**
+		 * @hooked _s_hero_header - 10
+		 */
+		do_action( 'before_site_content' );
+	?>
 
 	<div id="content" class="site-content">
 		<div class="container">

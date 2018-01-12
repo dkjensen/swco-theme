@@ -14,3 +14,24 @@
 	clear: both;
 	@include center-block;
 }
+
+.alignwide {
+	display: block;
+
+	img {
+		display: block;
+		width: 100%;
+	}
+}
+
+.alignfull {
+	display: block;
+	width: 100vw;
+	margin-left: 50%;
+	transform: translate( -50%, 0 );
+
+	img {
+		display: block;
+		width: 100%;
+	}
+}

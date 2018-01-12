@@ -10,7 +10,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php if( ! get_post_meta( get_the_ID(), 'hide_title', true ) ) : ?>
+	<?php if( ! apply_filters( 'hide_page_content_title', false, $post ) ) : ?>
 
 	<header class="entry-header">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>

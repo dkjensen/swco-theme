@@ -79,6 +79,13 @@ if ( ! function_exists( '_s_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
+
+		/**
+		 * Add support for Gutenberg editor
+		 */
+		add_theme_support( 'gutenberg', array(
+			'wide-images' => true,
+	   ) );
 	}
 endif;
 add_action( 'after_setup_theme', '_s_setup' );
@@ -102,11 +109,21 @@ add_action( 'after_setup_theme', '_s_content_width', 0 );
  */
 function _s_widgets_init() {
 	register_sidebar( array(
+		'name'          => esc_html__( 'Top Header', '_s' ),
+		'id'            => 'header-top',
+		'description'   => esc_html__( 'Add widgets here.', '_s' ),
+		'before_widget' => '<div id="%1$s" class="widget col %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<div class="h3 widget-title">',
+		'after_title'   => '</div>',
+	) );
+
+	register_sidebar( array(
 		'name'          => esc_html__( 'Header', '_s' ),
 		'id'            => 'header-1',
 		'description'   => esc_html__( 'Add widgets here.', '_s' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
 		'before_title'  => '<div class="h3 widget-title">',
 		'after_title'   => '</div>',
 	) );
@@ -121,15 +138,35 @@ function _s_widgets_init() {
 		'after_title'   => '</div>',
 	) );
 
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer Top', '_s' ),
+		'id'            => 'footer-top',
+		'description'   => esc_html__( 'Add widgets here.', '_s' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<div class="h3 widget-title">',
+		'after_title'   => '</div>',
+	) );
+
 	$footer_columns = (int) get_theme_mod( 'footer_columns', '1' );
 
 	register_sidebars( ( ( $footer_columns < 1 || $footer_columns > 6 ) ? 1 : $footer_columns ), array(
 		'name'          => __( 'Footer %d', '_s' ),
 		'id'            => 'footer',
 		'description'   => esc_html__( 'Add widgets here.', '_s' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
 		'before_title'  => '<div class="h3 widget-title footer-widget-title">',
+		'after_title'   => '</div>',
+	) );
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer Bottom', '_s' ),
+		'id'            => 'footer-bottom',
+		'description'   => esc_html__( 'Add widgets here.', '_s' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<div class="h3 widget-title">',
 		'after_title'   => '</div>',
 	) );
 }
@@ -139,6 +176,7 @@ add_action( 'widgets_init', '_s_widgets_init' );
  * Enqueue scripts and styles.
  */
 function _s_scripts() {
+	wp_enqueue_style( 'dashicons' );
 	wp_enqueue_style( '_s-style', get_template_directory_uri() . '/style.css', array(), filemtime( get_template_directory() . '/style.css' ) );
 	wp_enqueue_style( '_s-custom', get_theme_file_uri( 'custom.css' ), array(), filemtime( get_theme_file_path( 'custom.css' ) ) );
 

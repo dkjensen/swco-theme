@@ -1,0 +1,46 @@
+.widget_search {
+
+    .search-form {
+        position: relative;
+
+        label {
+            position: relative;
+            display: block;
+
+            &:after {
+                content: "\f179";
+                color: $color__text-input;
+                font-family: dashicons;
+                font-size: $size__button-height * .6;
+                line-height: $size__button-height;
+                text-align: center;
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: $size__button-height;
+                height: $size__button-height;
+                opacity: .25;
+                pointer-events: none;
+            }
+        }
+
+        .search-field {
+            background: $color__background-pre;
+            border: none;
+            padding-right: $size__button-height;
+        }
+
+        .search-submit {
+            font-family: dashicons;
+            appearance: none;
+            background: none;
+            opacity: 0;
+            text-indent: -99em;
+            width: $size__button-height;
+            height: $size__button-height;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+}

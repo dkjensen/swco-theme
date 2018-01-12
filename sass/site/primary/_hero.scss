@@ -1,5 +1,10 @@
-.hero {
-    .site-content {
-        background-color: $color__background-hero;
-    }
+.page-hero {
+    text-align: center;
+    margin: -2em 0 2em;
+    padding: 10% 0;
+    background-image: radial-gradient(ellipse at center,#fff 0,#eaeaea 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    position: relative;
 }

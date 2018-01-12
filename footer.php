@@ -20,6 +20,7 @@ $site_info 		= get_theme_mod( 'site_info' );
 
 	<footer id="colophon" class="site-footer">
 		<div class="container">
+			<?php if( is_active_sidebar( 'footer-top' ) ) dynamic_sidebar( 'footer-top' ); ?>
 			<div class="footer-widgets">
 				<div class="grid">
 					<?php for( $i = 1; $i <= ( ( $footer_columns < 1 || $footer_columns > 6 ) ? 1 : $footer_columns ); $i++ ) : ?>
@@ -35,6 +36,7 @@ $site_info 		= get_theme_mod( 'site_info' );
 					<?php endfor; ?>
 				</div>
 			</div>
+			<?php if( is_active_sidebar( 'footer-bottom' ) ) dynamic_sidebar( 'footer-bottom' ); ?>
 			<div class="site-info">
 				<?php print apply_filters( 'comment_text', $site_info ); ?>
 			</div>

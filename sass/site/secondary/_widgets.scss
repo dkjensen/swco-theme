@@ -1,28 +1,31 @@
-.widget {
-	margin: 0 0 1.5em;
+.widget-area {
 
-	/* Make sure select elements fit in widgets. */
-	select {
-		max-width: 100%;
-	}
+	.widget {
+		margin: 0 0 1.5em;
 
-	&.widget_search {
-		.search-form {
-			display: flex;
-			flex-direction: row;
-			flex-wrap: nowrap;
+		/* Make sure select elements fit in widgets. */
+		select {
+			max-width: 100%;
+		}
 
-			& > * {
-				flex: 1;
-			}
+		&.widget_search {
+			.search-form {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
 
-			.search-field {
-				width: 95%;
-				width: calc( 100% - .5em );
-			}
+				& > * {
+					flex: 1;
+				}
 
-			.search-submit {
-				flex: 0 0 auto;
+				.search-field {
+					width: 95%;
+					width: calc( 100% - .5em );
+				}
+
+				.search-submit {
+					flex: 0 0 auto;
+				}
 			}
 		}
 	}
