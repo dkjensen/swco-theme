@@ -85,7 +85,12 @@ if ( ! function_exists( '_s_setup' ) ) :
 		 */
 		add_theme_support( 'gutenberg', array(
 			'wide-images' => true,
-	   ) );
+       ) );
+       
+       /**
+        * EDD theme updater
+        */
+       require get_template_directory() . '/updater/theme-updater.php';
 	}
 endif;
 add_action( 'after_setup_theme', '_s_setup' );
@@ -180,7 +185,7 @@ function _s_scripts() {
 	wp_enqueue_style( '_s-style', get_template_directory_uri() . '/style.css', array(), filemtime( get_template_directory() . '/style.css' ) );
 	wp_enqueue_style( '_s-custom', get_theme_file_uri( 'custom.css' ), array(), filemtime( get_theme_file_path( 'custom.css' ) ) );
 
-	wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array( 'jquery' ), '20151215', true );
 	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -215,6 +220,11 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/meta-boxes.php';
 
 /**
+ * Post types
+ */
+require get_template_directory() . '/inc/post-types.php';
+
+/**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
@@ -233,4 +243,32 @@ if ( class_exists( 'WooCommerce' ) ) {
  */
 if( defined( 'WPSCSS_PLUGIN_DIR' ) ) {
 	require get_template_directory() . '/inc/wpscss.php';
+}
+
+/**
+ * Beaver builder customizations
+ */
+if( class_exists( 'FLBuilder' ) ) {
+	require get_template_directory() . '/inc/beaver-builder.php';
+}
+
+/**
+ * Gravity Forms customizations
+ */
+if( class_exists( 'GFForms' ) ) {
+	require get_template_directory() . '/inc/gravity-forms.php';
+}
+
+/**
+ * Pricing Tables by Fatcat Apps
+ */
+if( defined( 'PTP_PLUGIN_PATH' ) ) {
+	require get_template_directory() . '/inc/pricing-tables.php';
+}
+
+/**
+ * SEO Framework
+ */
+if( defined( 'THE_SEO_FRAMEWORK_VERSION' ) ) {
+	require get_template_directory() . '/inc/seo-framework.php';
 }

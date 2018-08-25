@@ -4,27 +4,33 @@ h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-	font-weight: normal;
+	font-weight: 700;
 	line-height: $font__line-height-heading;
-	margin: 0 0 .75em;
+    margin: 0 0 .75em;
+    
+    strong {
+        font-weight: 900;
+    }
 }
 h1, .h1 {
-	@include font-size(3.75);
+    @include font-size(3);
+    font-weight: 900;
 }
 h2, .h2 {
-	@include font-size(3);
+    @include font-size(2.25);
+    font-weight: 900;
 }
 h3, .h3 {
-	@include font-size(2);
+	@include font-size(1.875);
 }
 h4, .h4 {
-	@include font-size(1.5);
+    @include font-size(1.375);
 }
 h5, .h5 {
-	@include font-size(1.25);
+    @include font-size(1.25);
 }
 h6, .h6 {
-	@include font-size(1);
+    @include font-size(1);
 }
 
 /** 

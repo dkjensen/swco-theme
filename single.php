@@ -9,15 +9,15 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area col">
+	<div id="primary" class="content-area gcol">
 		<main id="main" class="site-main">
 
 		<?php
 		while ( have_posts() ) : the_post();
 
-			get_template_part( 'template-parts/content', get_post_type() );
+			get_template_part( 'template-parts/content', 'single' );
 
-			the_post_navigation();
+			_s_related_posts();
 
 			// If comments are open or we have at least one comment, load up the comment template.
 			if ( comments_open() || get_comments_number() ) :

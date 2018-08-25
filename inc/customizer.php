@@ -32,6 +32,39 @@ function _s_customize_register( $wp_customize ) {
 		) );
 	}
 
+	$custom_logo_args = get_theme_support( 'custom-logo' );
+
+	$wp_customize->add_setting( 'custom_logo_alt', array(
+		'theme_supports' => array( 'custom-logo' ),
+		'transport'      => 'postMessage',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'custom_logo_alt', array(
+		'label'         => __( 'Color Logo' ),
+		'section'       => 'title_tagline',
+		'priority'      => 8,
+		'height'        => $custom_logo_args[0]['height'],
+		'width'         => $custom_logo_args[0]['width'],
+		'flex_height'   => $custom_logo_args[0]['flex-height'],
+		'flex_width'    => $custom_logo_args[0]['flex-width'],
+		'button_labels' => array(
+			'select'       => __( 'Select logo' ),
+			'change'       => __( 'Change logo' ),
+			'remove'       => __( 'Remove' ),
+			'default'      => __( 'Default' ),
+			'placeholder'  => __( 'No logo selected' ),
+			'frame_title'  => __( 'Select logo' ),
+			'frame_button' => __( 'Choose logo' ),
+		),
+	) ) );
+
+	$wp_customize->selective_refresh->add_partial( 'custom_logo_alt', array(
+		'settings'            => array( 'custom_logo_alt' ),
+		'selector'            => '.custom-logo-link-alt',
+		'render_callback'     => array( $wp_customize, '_render_custom_logo_partial' ),
+		'container_inclusive' => true,
+	) );
+
 	$wp_customize->add_section( '_s_typography', array(
         'title'    => __( 'Typography', '_s' ),
         'priority' => 30,
@@ -53,7 +86,29 @@ function _s_customize_register( $wp_customize ) {
 	$wp_customize->add_section( '_s_header', array(
         'title'    => __( 'Header', '_s' ),
         'priority' => 140,
+    ) );
+    
+    $wp_customize->add_setting( 'header_text_color', array(
+		'default' 			=> '1',
+		'capability'     	=> 'edit_theme_options',
 	) );
+    
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_text_color', array(
+		'label' => 'Text Color',
+		'section' => '_s_header',
+		'settings' => 'header_text_color',
+	) ) );
+
+    $wp_customize->add_setting( 'header_background_color', array(
+		'default' 			=> '1',
+		'capability'     	=> 'edit_theme_options',
+	) );
+    
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background_color', array(
+		'label' => 'Background Color',
+		'section' => '_s_header',
+		'settings' => 'header_background_color',
+	) ) );
 
 	$wp_customize->add_setting( 'header_layout', array(
 		'default' 			=> 'default',
@@ -78,6 +133,41 @@ function _s_customize_register( $wp_customize ) {
 	$wp_customize->add_section( '_s_footer', array(
         'title'    => __( 'Footer', '_s' ),
         'priority' => 150,
+    ) );
+
+    $wp_customize->add_setting( 'footer_text_color', array(
+		'default' 			=> '1',
+		'capability'     	=> 'edit_theme_options',
+	) );
+    
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'footer_text_color', array(
+		'label' => 'Text Color',
+		'section' => '_s_footer',
+		'settings' => 'footer_text_color',
+	) ) );
+
+    $wp_customize->add_setting( 'footer_background_color', array(
+		'default' 			=> '1',
+		'capability'     	=> 'edit_theme_options',
+	) );
+    
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'footer_background_color', array(
+		'label' => 'Background Color',
+		'section' => '_s_footer',
+		'settings' => 'footer_background_color',
+	) ) );
+
+	$wp_customize->add_setting( 'site_info', array(
+		'default' 			=> '',
+		'capability'     	=> 'edit_theme_options',
+		'transport'			=> 'postMessage',
+	) );
+	
+	$wp_customize->add_control( '_s_footer_site_info', array(
+		'label' 		=> __( 'Footer Site Info', '_s' ),
+		'section' 		=> '_s_footer',
+		'settings' 		=> 'site_info',
+		'type'			=> 'textarea',
 	) );
 
 	$wp_customize->add_setting( 'footer_columns', array(
@@ -98,19 +188,6 @@ function _s_customize_register( $wp_customize ) {
 			'5'				=> __( 'Five Columns', '_s' ),
 			'6'				=> __( 'Six Columns', '_s' ),
 		)
-	) );
-
-	$wp_customize->add_setting( 'site_info', array(
-		'default' 			=> '',
-		'capability'     	=> 'edit_theme_options',
-		'transport'			=> 'postMessage',
-	) );
-	
-	$wp_customize->add_control( '_s_footer_site_info', array(
-		'label' 		=> __( 'Footer Site Info', '_s' ),
-		'section' 		=> '_s_footer',
-		'settings' 		=> 'site_info',
-		'type'			=> 'textarea',
 	) );
 	
 	$wp_customize->add_setting( 'link_color', array(
@@ -217,3 +294,23 @@ function _s_customize_preview_js() {
 	wp_enqueue_script( '_s-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20151215', true );
 }
 add_action( 'customize_preview_init', '_s_customize_preview_js' );
+
+
+/**
+ * Render customizer dynamic CSS
+ */
+function _s_dynamic_css() {
+
+    $header_background_color = get_theme_mod( 'header_background_color', 'transparent' );
+    $header_text_color = get_theme_mod( 'header_text_color', 'inherit' );
+    $footer_background_color = get_theme_mod( 'footer_background_color', 'transparent' );
+    $footer_text_color = get_theme_mod( 'footer_text_color', 'inherit' );
+
+    $css  = "";
+    $css .= ".site-header{color: {$header_text_color}; background-color: {$header_background_color};}";
+    $css .= ".site-footer{color: {$footer_text_color}; background-color: {$footer_background_color};}";
+
+    wp_add_inline_style( '_s-style', $css );
+}
+
+add_action( 'wp_enqueue_scripts', '_s_dynamic_css', 60 );

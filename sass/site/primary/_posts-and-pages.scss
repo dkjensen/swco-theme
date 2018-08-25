@@ -21,10 +21,19 @@
 	display: none;
 }
 
-.page-content,
+.site-content {
+    background: #ffffff;
+    overflow: hidden !important;
+}
+
 .entry-content,
 .entry-summary {
 	margin: 1.5em 0 0;
+}
+
+.content-area {
+    margin: 5em 0 0;
+    margin: 7.5vh 0 0;
 }
 
 .page-links {

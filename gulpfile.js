@@ -68,13 +68,6 @@ gulp.task('images', function() {
 
 // Watch
 gulp.task('watch', function() {
-  browserSync.init({
-    files: ['./**/*.php'],
-    proxy: {
-      target: 'http://photoboothrentals.test'
-    },
-    notify: false
-  });
   gulp.watch('./sass/**/*.scss', ['sass', reload]);
   gulp.watch('./js/*.js', ['js', reload]);
   gulp.watch('images/src/*', ['images', reload]);

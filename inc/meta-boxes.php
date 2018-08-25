@@ -4,6 +4,8 @@
  * 
  * @package _s
  */
+
+ 
 function _s_meta_boxes() {
     global $post;
 
@@ -35,3 +37,4 @@ function _s_save_meta_boxes( $post_id, $post, $update ) {
     update_post_meta( $post_id, 'hide_title', ( isset( $_POST['hide_title'] ) ? (int) $_POST['hide_title'] : 0 ) );
 }
 add_action( 'save_post', '_s_save_meta_boxes', 10, 3 );
+

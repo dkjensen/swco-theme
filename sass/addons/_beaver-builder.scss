@@ -1,0 +1,115 @@
+.fl-builder .content-area {
+    margin: 0;
+}
+
+@media screen and (max-width: 80em) {
+    .container .fl-builder-content {
+        margin-left: -.75em;
+        margin-right: -.75em;
+    }
+}
+
+.fl-row-content-wrap {
+    background: inherit;
+}
+
+.fl-row-full-width > .fl-row-content-wrap {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+
+.fl-row-fixed-width > .fl-row-content-wrap {
+    @extend .container;
+}
+
+.fl-row-hero-height .fl-row-content-wrap {
+    min-height: 60vh;
+    
+    @include bp('sm') {
+        min-height: 50vh;
+    }
+
+    .fl-rich-text p {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+.fl-builder-edit .fl-row-hero-height .fl-row-content-wrap {
+	min-height: calc( 60vh - 48px );
+}
+.fl-builder-ie-11 .fl-row.fl-row-hero-height:not(.fl-visible-medium):not(.fl-visible-medium-mobile):not(.fl-visible-mobile) {
+	min-height: 60%;
+}
+
+.fl-row-bg-video .fl-row-content {
+    position: static;
+
+    .fl-module {
+        position: relative;
+    }
+}
+
+@include bp('sm') {
+    .fl-row-full-height:not(.hero) .fl-row-content-wrap {
+        min-height: 50vh;
+    }
+}
+
+.fl-row {
+    &.box-shadow .fl-row-content {
+        box-shadow: 0 3px 5px 0 rgba(0,1,1,0.1);
+    }
+}
+
+.fl-module-testimonials .bx-wrapper {
+    padding: 0 40px;
+}
+
+.fl-slider-next,
+.fl-slider-prev {
+    cursor: pointer;
+    transform: translate(0, -50%);
+    width: 50px;
+    height: 80px;
+
+    &:before {
+        content: '';
+        color: $color__border-light;
+        font-size: 70px;
+        border-style: solid;
+        border-width: .175em .175em 0 0;
+        display: inline-block;
+        height: .45em;
+        left: .15em;
+        position: relative;
+        top: 50%;
+        transform: rotate(45deg) translate(0, -50%);
+        vertical-align: top;
+        width: .45em;
+    }
+
+    &:hover:before {
+        color: darken( $color__border-light, 10%);
+    }
+}
+.fl-slider-prev:before {
+    transform: rotate(-135deg);
+}
+
+.fl-post-grid {
+    .fl-post-grid-post {
+        position: relative;
+        box-shadow: 0px 1px 6px rgba( 0, 0, 0, .06 );
+
+        .fl-post-grid-text {
+            position: absolute;
+            top: 100%;
+            margin-top: 1em;
+        }
+
+        .fl-post-grid-title,
+        .fl-post-grid-meta {
+            display: inline-block;
+        }
+    }
+}

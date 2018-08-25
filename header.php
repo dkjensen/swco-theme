@@ -58,4 +58,4 @@
 				do_action( 'before_site_main' );
 			?>
 
-			<div class="grid">
+			<div class="ggrid">

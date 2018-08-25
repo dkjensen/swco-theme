@@ -22,10 +22,10 @@ $site_info 		= get_theme_mod( 'site_info' );
 		<div class="container">
 			<?php if( is_active_sidebar( 'footer-top' ) ) dynamic_sidebar( 'footer-top' ); ?>
 			<div class="footer-widgets">
-				<div class="grid">
+				<div class="ggrid">
 					<?php for( $i = 1; $i <= ( ( $footer_columns < 1 || $footer_columns > 6 ) ? 1 : $footer_columns ); $i++ ) : ?>
 
-					<div class="col">
+					<div class="gcol_xs-12">
 						<div class="footer-widget-area">
 
 							<?php dynamic_sidebar( 'footer' . ( $i > 1 ? '-' . $i : '' ) ); ?>

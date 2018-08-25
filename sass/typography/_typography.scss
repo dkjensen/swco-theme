@@ -1,10 +1,57 @@
+@font-face {
+    font-family: 'Avenir';
+    src: url('fonts/avenir/Avenir-Light.eot');
+    src: url('fonts/avenir/Avenir-Light.eot?#iefix') format('embedded-opentype'),
+        url('fonts/avenir/Avenir-Light.woff2') format('woff2'),
+        url('fonts/avenir/Avenir-Light.woff') format('woff'),
+        url('fonts/avenir/Avenir-Light.ttf') format('truetype');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Avenir';
+    src: url('fonts/avenir/Avenir-Book.eot');
+    src: url('fonts/avenir/Avenir-Book.eot?#iefix') format('embedded-opentype'),
+        url('fonts/avenir/Avenir-Book.woff2') format('woff2'),
+        url('fonts/avenir/Avenir-Book.woff') format('woff'),
+        url('fonts/avenir/Avenir-Book.ttf') format('truetype');
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'Avenir';
+    src: url('fonts/avenir/Avenir-Medium.eot');
+    src: url('fonts/avenir/Avenir-Medium.eot?#iefix') format('embedded-opentype'),
+        url('fonts/avenir/Avenir-Medium.woff2') format('woff2'),
+        url('fonts/avenir/Avenir-Medium.woff') format('woff'),
+        url('fonts/avenir/Avenir-Medium.ttf') format('truetype');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Avenir';
+    src: url('fonts/avenir/Avenir-Heavy.eot');
+    src: url('fonts/avenir/Avenir-Heavy.eot?#iefix') format('embedded-opentype'),
+        url('fonts/avenir/Avenir-Heavy.woff2') format('woff2'),
+        url('fonts/avenir/Avenir-Heavy.woff') format('woff'),
+        url('fonts/avenir/Avenir-Heavy.ttf') format('truetype');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Avenir';
+    src: url('fonts/avenir/Avenir-Black.eot');
+    src: url('fonts/avenir/Avenir-Black.eot?#iefix') format('embedded-opentype'),
+        url('fonts/avenir/Avenir-Black.woff2') format('woff2'),
+        url('fonts/avenir/Avenir-Black.woff') format('woff'),
+        url('fonts/avenir/Avenir-Black.ttf') format('truetype');
+    font-weight: 900;
+}
+
 body,
 button,
 input,
 select,
 optgroup,
 textarea {
-	color: $color__text-main;
+    color: $color__text-main;
+    font-weight: 400;
 	font-family: $font__main;
 	@include font-size(1);
 	line-height: $font__line-height-body;

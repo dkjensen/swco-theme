@@ -24,6 +24,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 # Normalize
+# Grid
 # Typography
 # Elements
 # Forms
@@ -41,7 +42,6 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 # Media
 	## Captions
 	## Galleries
-# Grid
 --------------------------------------------------------------*/
 @import "variables-site/variables-site";
 @import "mixins/mixins-master";
@@ -50,6 +50,11 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 # Normalize
 --------------------------------------------------------------*/
 @import "normalize";
+
+/*--------------------------------------------------------------
+# Grid
+--------------------------------------------------------------*/
+@import "../node_modules/gridlex/src/gridlex";
 
 /*--------------------------------------------------------------
 # Typography
@@ -110,8 +115,3 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 # Addons
 --------------------------------------------------------------*/
 @import "addons/addons";
-
-/*--------------------------------------------------------------
-# Grid
---------------------------------------------------------------*/
-@import "../node_modules/gridlex/src/gridlex";

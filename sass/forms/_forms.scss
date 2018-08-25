@@ -3,3 +3,7 @@
 @import "fields";
 
 @import "notifications";
+
+form label {
+    cursor: pointer;
+}

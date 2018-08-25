@@ -9,20 +9,19 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area col">
-		<main id="main" class="site-main">
+	<header class="page-header gcol-12">
+		<?php
+			the_archive_title( '<h1 class="page-title">', '</h1>' );
+			the_archive_description( '<div class="archive-description">', '</div>' );
+		?>
+	</header><!-- .page-header -->
+
+	<div id="primary" class="content-area gcol">
+		<main id="main" class="site-main ggrid">
 
 		<?php
-		if ( have_posts() ) : ?>
+		if ( have_posts() ) : 
 
-			<header class="page-header">
-				<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
-					the_archive_description( '<div class="archive-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
-
-			<?php
 			/* Start the Loop */
 			while ( have_posts() ) : the_post();
 
@@ -35,7 +34,7 @@ get_header(); ?>
 
 			endwhile;
 
-			the_posts_navigation();
+			_s_pagination();
 
 		else :
 

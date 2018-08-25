@@ -1,0 +1,108 @@
+div.ptp-pricing-table {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    margin-left: -( $gl-gutter / 2 );
+    margin-right: -( $gl-gutter / 2 );
+}
+
+.ptp-col {
+    width: auto !important;
+    flex: 1 0 100%;
+    padding-left: ( $gl-gutter / 2 );
+    padding-right: ( $gl-gutter / 2 );
+
+    @include bp('sm') {
+        flex: 1;
+    }
+
+    &.ptp-highlight {
+        .ptp-item-container {
+            box-shadow: 0px 2px 20px rgba( 0, 0, 0, .15 );
+        }
+    }
+
+    .ptp-item-container {
+        border: 0;
+        background: #ffffff;
+
+        & > * {
+            background: none;
+        }
+    }
+
+    .ptp-plan {
+        color: #ffffff;
+        padding: .75rem .25rem;
+        background: lighten( $color__tertiary, 10% );
+        font-size: 24px;
+        line-height: 1;
+        height: auto;
+
+        span {
+            display: block;
+            @include font-size( 1 );
+            line-height: 22px;
+            padding: 1em .5em;
+            background: rgba( 255, 255, 255, .1 );
+            margin: .75rem -.25rem -.75rem;
+        }
+    }
+
+    &:nth-child(2) .ptp-plan {
+        background: $color__tertiary;
+    }
+
+    &:nth-child(3) .ptp-plan {
+        background: darken( $color__tertiary, 10% );
+    }
+
+    .ptp-price {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        line-height: 30px;
+        margin: 0 0 .5rem;
+
+        span {
+            font-size: 38px;
+            display: block;
+            letter-spacing: 0;
+
+            sup {
+                position: relative;
+                top: -.75em;
+                font-size: .5em;
+            }
+        }
+    }
+
+    .ptp-bullet-item {
+        font-size: 16px;
+        text-align: left;
+        margin: 0 .5em;
+        padding: .5em .75em;
+        display: flex;
+        justify-content: space-between;
+        border: 0;
+
+        & + .ptp-bullet-item {
+            border-top: 1px solid $color__border-light;
+        }
+
+        span {
+            margin: 0 0 0 1em;
+            font-weight: bold;
+        }
+    }
+
+    .ptp-cta {
+        margin: 1em 0 0;
+
+        a.ptp-button {
+            @extend .button;
+            text-transform: none;
+        }
+    }
+}

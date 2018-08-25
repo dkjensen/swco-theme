@@ -2,7 +2,7 @@ a {
 	&,
 	&:visited {
 		color: $color__link;
-		text-decoration: none;
+		text-decoration: underline;
 	}
 	&:hover,
 	&:focus,
