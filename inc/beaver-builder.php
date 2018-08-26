@@ -60,11 +60,18 @@ function _s_bb_plugin_smooth_scroll_mod() {
 }
 add_action( 'wp_footer', '_s_bb_plugin_smooth_scroll_mod' );
 
-
+/**
+ * Hide page title if builder is active
+ *
+ * @param boolean $hide
+ * @param WP_Post $_post
+ * @return boolean
+ */
 function _s_bb_plugin_hide_title( $hide, $_post ) {
     if( FLBuilderModel::is_builder_enabled( $_post->ID ) ) {
         return true;
     }
+
     return $hide;
 }
 add_filter( 'hide_page_content_title', '_s_bb_plugin_hide_title', 10, 2 );

@@ -98,54 +98,6 @@ function _s_woocommerce_active_body_class( $classes ) {
 }
 add_filter( 'body_class', '_s_woocommerce_active_body_class' );
 
-/**
- * Products per page.
- *
- * @return integer number of products.
- */
-function _s_woocommerce_products_per_page() {
-	return 12;
-}
-add_filter( 'loop_shop_per_page', '_s_woocommerce_products_per_page' );
-
-/**
- * Product gallery thumnbail columns.
- *
- * @return integer number of columns.
- */
-function _s_woocommerce_thumbnail_columns() {
-	return 4;
-}
-add_filter( 'woocommerce_product_thumbnails_columns', '_s_woocommerce_thumbnail_columns' );
-
-/**
- * Default loop columns on product archives.
- *
- * @return integer products per row.
- */
-function _s_woocommerce_loop_columns() {
-	return 3;
-}
-add_filter( 'loop_shop_columns', '_s_woocommerce_loop_columns' );
-
-/**
- * Related Products Args.
- *
- * @param array $args related products args.
- * @return array $args related products args.
- */
-function _s_woocommerce_related_products_args( $args ) {
-	$defaults = array(
-		'posts_per_page' => 3,
-		'columns'        => 3,
-	);
-
-	$args = wp_parse_args( $defaults, $args );
-
-	return $args;
-}
-add_filter( 'woocommerce_output_related_products_args', '_s_woocommerce_related_products_args' );
-
 if ( ! function_exists( '_s_woocommerce_product_columns_wrapper' ) ) {
 	/**
 	 * Product columns wrapper.
@@ -215,14 +167,6 @@ if ( ! function_exists( '_s_woocommerce_wrapper_after' ) ) {
 	}
 }
 add_action( 'woocommerce_after_main_content', '_s_woocommerce_wrapper_after' );
-
-remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cart_totals', 10 );
-
-add_action( 'woocommerce_before_cart_table', function() { print '<div class="col-8">'; }, 100 );
-add_action( 'woocommerce_after_cart_table', function() { print '</div>'; }, 0 );
-
-add_action( 'woocommerce_after_cart_table', 'woocommerce_cart_totals' );
-
 
 /**
  * Sample implementation of the WooCommerce Mini Cart.

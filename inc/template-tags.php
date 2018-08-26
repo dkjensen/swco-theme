@@ -26,35 +26,6 @@ if( ! function_exists( '_s_header_classes' ) ) :
 
 endif;
 
-if ( ! function_exists( '_s_post_categories' ) ) :
-	/**
-	 * Prints HTML with meta information for the current post-date/time and author.
-	 */
-	function _s_post_categories() {
-	?>
-
-		<div class="entry-categories">
-
-		<?php
-		$categories = wp_get_post_terms( get_the_ID(), 'category' );
-
-		foreach( (array) $categories as $category ) {
-			$color = get_term_meta( $category->term_id, 'cc_color', true );
-			?>
-
-			<span class="category-badge <?php print ( ! empty( $color ) ? 'has-color' : '' ); ?>" <?php print ( ! empty( $color ) ? sprintf( 'style="background-color: %s;"', esc_attr( $color ) ) : '' ); ?>>
-				<a href="<?php print get_term_link( $category->term_id, 'category' ); ?>"><?php esc_html_e( $category->name, '_s' ); ?></a>
-			</span>
-
-			<?php
-		}
-		?>
-		</div>
-
-	<?php
-	}
-endif;
-
 if ( ! function_exists( '_s_posted_on' ) ) :
 	/**
 	 * Prints HTML with meta information for the current post-date/time and author.
@@ -227,50 +198,5 @@ if( ! function_exists( '_s_pagination' ) ) :
 			'prev_text' => __( 'Previous', '_s' ),
 		);
 		echo '<div class="pagination primary-links gcol-12">' . paginate_links( $pagination ) . '</div>';
-	}
-endif;
-
-if( ! function_exists( '_s_related_posts' ) ) :
-	/**
-	 * Displays related posts 
-	 *
-	 * @param array $args
-	 * @param string $template
-	 * @return void
-	 */
-	function _s_related_posts( $args = array(), $template = 'template-parts/content' ) {
-		global $wp_query;
-
-		$args = wp_parse_args( $args, array(
-			'posts_per_page'		=> 2,
-			'post_type'				=> 'post',
-			'post_status'			=> 'publish',
-			'orderby'				=> 'rand',
-			'cat'					=> wp_list_pluck( get_the_category( get_queried_object_id() ), 'term_id' )
-		) );
-
-		$related = new WP_Query( $args );
-
-		ob_start();
-
-		printf( '<h3 class="related-posts-title">%s</h3>', __( 'Related News & Events', '_s' ) );
-
-		printf( '<div class="ggrid-%s_sm-12">', ceil( 12 / (int) $args['posts_per_page'] ) );
-
-		if( $related->have_posts() ) {
-			while( $related->have_posts() ) : $related->the_post();
-
-			if( locate_template( array( $template . '.php' ) ) ) {
-				get_template_part( $template );
-			}
-
-			endwhile;
-		}
-
-		print '</div>';
-
-		wp_reset_postdata();
-
-		echo '<div class="related-posts">' . ob_get_clean() . '</div>';
 	}
 endif;

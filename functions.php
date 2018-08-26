@@ -260,10 +260,3 @@ if( class_exists( 'GFForms' ) ) {
 if( defined( 'PTP_PLUGIN_PATH' ) ) {
 	require get_template_directory() . '/inc/pricing-tables.php';
 }
-
-/**
- * SEO Framework
- */
-if( defined( 'THE_SEO_FRAMEWORK_VERSION' ) ) {
-	require get_template_directory() . '/inc/seo-framework.php';
-}
