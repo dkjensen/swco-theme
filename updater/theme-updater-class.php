@@ -2,11 +2,11 @@
 /**
  * Theme updater class.
  *
- * @package Vendd
+ * @package _s
  * @version 1.0.3
  */
 
-class Vendd_Updater {
+class SWCO_Updater {
 
 	private $remote_api_url;
 	private $request_data;

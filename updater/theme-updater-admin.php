@@ -2,10 +2,10 @@
 /**
  * Theme updater admin page and functions.
  *
- * @package Vendd
+ * @package _s
  */
 
-class Vendd_Updater_Admin {
+class SWCO_Updater_Admin {
 
 	/**
 	 * Variables required for the theme updater
@@ -29,15 +29,15 @@ class Vendd_Updater_Admin {
 	function __construct( $config = array(), $strings = array() ) {
 
 		$config = wp_parse_args( $config, array(
-			'remote_api_url' => 'http://easydigitaldownloads.com',
-			'theme_slug' => get_template(),
-			'item_name' => '',
-			'license' => '',
-			'version' => '',
-			'author' => '',
-			'download_id' => '',
-			'renew_url' => ''
-		) );
+			'remote_api_url' => 'https://seattlewebco.com', // Site where EDD is hosted
+            'item_name'      => 'Seattle Web Co. WordPress Starter Theme', // Name of theme
+            'theme_slug'     => 'swco-theme', // Theme slug
+            'version'        => '1.0.0', // The current version of this theme
+            'author'         => 'Seattle Web Co.', // The author of this theme
+            'download_id'    => '', // Optional, used for generating a license renewal link
+            'renew_url'      => '', // Optional, allows for a custom license renewal link,
+            'beta'           => false, // Optional, set to true to opt into beta versions
+        ) );
 
 		// Set config arguments
 		$this->remote_api_url = $config['remote_api_url'];
@@ -72,7 +72,7 @@ class Vendd_Updater_Admin {
 	 * Enqueue the admin styles
 	 */
 	function admin_styles() {
-		wp_enqueue_style( 'vendd-admin-style', get_template_directory_uri() . '/inc/admin/admin.css' );
+		wp_enqueue_style( '_s-admin-style', get_template_directory_uri() . '/inc/admin/admin.css' );
 	}
 
 	/**
@@ -90,12 +90,12 @@ class Vendd_Updater_Admin {
 			return;
 		}
 
-		if ( ! class_exists( 'Vendd_Updater' ) ) {
+		if ( ! class_exists( '_s_Updater' ) ) {
 			// Load our custom theme updater
 			include( dirname( __FILE__ ) . '/theme-updater-class.php' );
 		}
 
-		new Vendd_Updater(
+		new SWCO_Updater(
 			array(
 				'remote_api_url' 	=> $this->remote_api_url,
 				'version' 			=> $this->version,
@@ -149,19 +149,19 @@ class Vendd_Updater_Admin {
 		}
 		?>
 		<div class="wrap license-wrap">
-			<h2 class="headline"><?php echo sprintf( __( '%s License Key & Child Theme Management', 'vendd' ), VENDD_NAME ); ?></h2>
-			<div class="vendd-license-management-wrap">
-				<h2 class="vendd-license-management-headline"><?php echo sprintf( __( 'Activate Your %s License Key', 'vendd' ), VENDD_NAME ); ?></h2>
+			<h2 class="headline"><?php echo sprintf( __( 'License Key & Child Theme Management', '_s' ), '' ); ?></h2>
+			<div class="_s-license-management-wrap">
+				<h2 class="_s-license-management-headline"><?php _e( 'Activate your theme license key', '_s' ); ?></h2>
 				<p>
-					<?php echo sprintf( __( 'Your license key grants you access to theme updates and support. If your license key is deactivated or expired, your theme will work properly but you will not receive automatic updates.', 'vendd' ) );
+					<?php echo sprintf( __( 'Your license key grants you access to theme updates and support. If your license key is deactivated or expired, your theme will work properly but you will not receive automatic updates.', '_s' ) );
 					?>
 				</p>
-				<h3><strong><?php _e( 'License activation instructions', 'vendd' ); ?></strong></h3>
-				<ol class="vendd-license-instructions">
-					<li><?php _e( 'Enter your license key.', 'vendd' ); ?></li>
-					<li><?php _e( 'Click the "Save License Key Changes" button.', 'vendd' ); ?></li>
-					<li><?php _e( 'Click the new "Activate License" button.', 'vendd' ); ?></li>
-					<li><?php _e( 'You\'re done! The status of your license displays below the License Key field.', 'vendd' ); ?></li>
+				<h3><strong><?php _e( 'License activation instructions', '_s' ); ?></strong></h3>
+				<ol class="_s-license-instructions">
+					<li><?php _e( 'Enter your license key.', '_s' ); ?></li>
+					<li><?php _e( 'Click the "Save License Key Changes" button.', '_s' ); ?></li>
+					<li><?php _e( 'Click the new "Activate License" button.', '_s' ); ?></li>
+					<li><?php _e( 'You\'re done! The status of your license displays below the License Key field.', '_s' ); ?></li>
 				</ol>
 				<form method="post" action="options.php">
 					<?php settings_fields( $this->theme_slug . '-license' ); ?>
@@ -196,53 +196,53 @@ class Vendd_Updater_Admin {
 		<div class="wrap child-theme-wrap">
 			<?php
 			/*
-			 * only show child theme instructions if Vendd is the active theme
+			 * only show child theme instructions if _s is the active theme
 			 */
-			$vendd_parent = wp_get_theme();
-			if ( $vendd_parent->get( 'Name' ) === 'Vendd' ) {
+			$_s_parent = wp_get_theme();
+			if ( $_s_parent->get( 'Name' ) === '_s' ) {
 				?>
-				<h2 class="headline"><?php echo sprintf( __( 'How to Create a Child Theme for %1$s', 'vendd' ), VENDD_NAME ); ?></h2>
+				<h2 class="headline"><?php _e( 'How to create a child theme', '_s' ); ?></h2>
 				<ol>
-					<li><?php _e( 'Through FTP, navigate to <code>your_website/wp-content/themes/</code> and in that directory, create a new folder as the name of your child theme. Something like <code>vendd-child</code> is perfect.', 'vendd' ); ?></li>
-					<li><?php _e( 'Inside of your new folder, create a file called <code>style.css</code> (the name is NOT optional).', 'vendd' ); ?></li>
-					<li><?php _e( 'Inside of your new <code>style.css</code> file, add the following CSS:', 'vendd' ); ?>
+					<li><?php _e( 'Through FTP, navigate to <code>your_website/wp-content/themes/</code> and in that directory, create a new folder as the name of your child theme. Something like <code>swco-theme-child</code> is perfect.', '_s' ); ?></li>
+					<li><?php _e( 'Inside of your new folder, create a file called <code>style.css</code> (the name is NOT optional).', '_s' ); ?></li>
+					<li><?php _e( 'Inside of your new <code>style.css</code> file, add the following CSS:', '_s' ); ?>
 
-<pre class="vendd-pre">
+<pre class="_s-pre">
 /*
-Theme Name: Vendd Child
+Theme Name: SWCO Child
 Author:
 Author URI:
-Description: Child theme for Vendd
-Template: vendd
+Description: Child theme of swco-theme
+Template: swco-theme
 */
 
 /* ----- Theme customization starts here ----- */
 </pre>
 
 					</li>
-					<li><?php printf( __( 'You may edit all of what you pasted EXCEPT for the <code>Template: vendd</code> line. Leave that line alone or the child theme will not attach itself to %s.', 'vendd' ), VENDD_NAME ); ?></li>
-					<li><?php _e( 'Also inside of your folder, create another file called <code>functions.php</code> (the name is NOT optional).', 'vendd' ); ?></li>
-					<li><?php _e( 'Inside of your new, blank <code>functions.php</code> file, add the following PHP:', 'vendd' ); ?>
+					<li><?php printf( __( 'You may edit all of what you pasted EXCEPT for the <code>Template: swco-theme</code> line. Leave that line alone or the child theme will not attach itself to %s.', '_s' ), 'swco-theme' ); ?></li>
+					<li><?php _e( 'Also inside of your folder, create another file called <code>functions.php</code> (the name is NOT optional).', '_s' ); ?></li>
+					<li><?php _e( 'Inside of your new, blank <code>functions.php</code> file, add the following PHP:', '_s' ); ?>
 
-<pre class="vendd-pre">
+<pre class="_s-pre">
 &lt;?php
 /**
- * Vendd Child Theme Functions
+ * SWCO Child Theme Functions
  */
 
-function vendd_child_enqueue_styles() {
+function swco_child_enqueue_styles() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
 }
-add_action( 'wp_enqueue_scripts', 'vendd_child_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'swco_child_enqueue_styles' );
 </pre>
 					</li>
-					<li><?php _e( 'With your new child theme folder in place, the above CSS pasted inside of your <code>style.css</code> file, and the above PHP pasted inside of your <code>functions.php</code> file, go back to your WordPress dashboard and navigate to "Appearance -> Themes" and locate your new theme (you\'ll see the name you chose). Activate your theme.', 'vendd' ); ?></li>
-					<li><?php _e( 'With your child theme activated, you can edit its stylesheet all you like. You may also add custom functions to your new functions file.', 'vendd' ); ?></li>
-					<li><?php _e( 'Enjoy!', 'vendd' ); ?></li>
+					<li><?php _e( 'With your new child theme folder in place, the above CSS pasted inside of your <code>style.css</code> file, and the above PHP pasted inside of your <code>functions.php</code> file, go back to your WordPress dashboard and navigate to "Appearance -> Themes" and locate your new theme (you\'ll see the name you chose). Activate your theme.', '_s' ); ?></li>
+					<li><?php _e( 'With your child theme activated, you can edit its stylesheet all you like. You may also add custom functions to your new functions file.', '_s' ); ?></li>
+					<li><?php _e( 'Enjoy!', '_s' ); ?></li>
 				</ol>
 				<?php
 			} else {
-				echo sprintf( '<h3>' . __( 'You are currently using a child theme for %s.', 'vendd' ) . '</h3>', VENDD_NAME );
+				echo sprintf( '<h3>' . __( 'You are currently using a child theme for %s.', '_s' ) . '</h3>', '_s' );
 			}
 			?>
 		</div>
